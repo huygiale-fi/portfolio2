@@ -1,0 +1,31 @@
+{
+    "family": "portfolio-task",
+    "networkMode": "awsvpc",
+    "requiresCompatibilities": ["FARGATE"],
+    "cpu": "256",
+    "memory": "512",
+    "executionRoleArn": "arn:aws:iam::380414078747:role/ecsTaskExecutionRole",
+    "containerDefinitions": [
+      {
+        "name": "portfolio-container",
+        "image": "placeholder",
+        "portMappings": [
+          {
+            "containerPort": 80,
+            "protocol": "tcp"
+          }
+        ],
+        "essential": true,
+        "logConfiguration": {
+          "logDriver": "awslogs",
+          "options": {
+            "awslogs-group": "/ecs/portfolio",
+            "awslogs-create-group": "true",
+            "awslogs-region": "ap-southeast-1",
+            "awslogs-stream-prefix": "ecs"
+          }
+        }
+      }
+    ]
+  }
+  
