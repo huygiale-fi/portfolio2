@@ -15,7 +15,16 @@
             "protocol": "tcp"
           }
         ],
-        "essential": true
+        "essential": true,
+        "logConfiguration": {
+          "logDriver": "awslogs",
+          "options": {
+            "awslogs-group": "/ecs/portfolio",
+            "awslogs-create-group": "true",
+            "awslogs-region": "ap-southeast-1",
+            "awslogs-stream-prefix": "ecs"
+          }
+        }
       }
     ]
   }
