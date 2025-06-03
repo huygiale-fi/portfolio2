@@ -20,4 +20,4 @@ COPY --from=builder /app/package*.json ./
 
 EXPOSE 3000
 
-CMD ["node", "build/index.js"]
+CMD ["npm", "start"]
