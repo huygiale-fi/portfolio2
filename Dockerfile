@@ -1,10 +1,12 @@
 FROM node:16-alpine as builder
 
-WORKDIR /app
+WORKDIR /usr/src/app
 
 COPY package*.json ./
 
 RUN npm install --production
+
+RUN npm install -g serve
 
 COPY . .
 
@@ -12,12 +14,12 @@ RUN npm run build
 
 FROM node:16-alpine
 
-WORKDIR /app
+WORKDIR /usr/src/app
 
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/build ./build
-COPY --from=builder /app/package*.json ./
+RUN npm install -g serve
+
+COPY --from=builder /usr/src/app/build ./build
 
 EXPOSE 3000
 
-CMD ["npm", "start"]
+CMD ["serve", "-s", "build", "-l", "3000"]
